@@ -39,3 +39,10 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+./android/key.properties
+
+icons/
+icons-150px/
+
+
