@@ -23,6 +23,7 @@ const theotokosTabynsk = const NameOfDay._internal(100108);
 const newMartyrsOfRussia = const NameOfDay._internal(100109);
 const holyFathersSixCouncils = const NameOfDay._internal(100110);
 const allRussianSaints = const NameOfDay._internal(100111);
+const holyFathersSeventhCouncil = const NameOfDay._internal(100112);
 
 class ChurchCalendar {
   static DateTime currentDate;
@@ -79,7 +80,8 @@ class ChurchCalendar {
         P + 61.days: [theotokosTabynsk],
         P + 63.days: [allRussianSaints],
         nearestSunday(DateTime(currentYear, 2, 7)): [newMartyrsOfRussia],
-        nearestSunday(DateTime(currentYear, 7, 29)): [holyFathersSixCouncils]
+        nearestSunday(DateTime(currentYear, 7, 29)): [holyFathersSixCouncils],
+        nearestSunday(DateTime(currentYear, 10, 24)): [holyFathersSeventhCouncil]
       };
     }
   }
