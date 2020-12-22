@@ -28,6 +28,8 @@ class _SaintDetailPageState extends State<SaintDetailPage> {
 
     markdown = html2md
         .convert(widget.saint.zhitie)
+        .trim()
+        .replaceAll(RegExp(r'\n '), '\n')
         .replaceAll('\\', '')
         .replaceAll('\u00AD', '');
 
@@ -116,7 +118,7 @@ class _SaintDetailPageState extends State<SaintDetailPage> {
     final _textMinHeight = MediaQuery.of(context).size.height - _appBarHeight;
 
     final body1 =
-        Theme.of(context).textTheme.body1.copyWith(fontSize: G.fontSize.val());
+        Theme.of(context).textTheme.bodyText2.copyWith(fontSize: G.fontSize.val());
     // final String
     final mkText = Text(markdown, style: body1);
 
