@@ -14,6 +14,12 @@ const pentecost = const NameOfDay._internal(100003);
 const sundayOfForefathers = const NameOfDay._internal(100004);
 const sundayBeforeNativity = const NameOfDay._internal(100005);
 
+const sunday1GreatLent = const NameOfDay._internal(100006);
+const sunday2GreatLent = const NameOfDay._internal(11274);
+const sunday3GreatLent = const NameOfDay._internal(100007);
+const sunday4GreatLent = const NameOfDay._internal(4121);
+const sunday5GreatLent = const NameOfDay._internal(4141);
+
 const theotokosIveron = const NameOfDay._internal(2250);
 const theotokosLiveGiving = const NameOfDay._internal(100100);
 const theotokosDubenskaya = const NameOfDay._internal(100101);
@@ -68,8 +74,14 @@ class ChurchCalendar {
       currentYear = date.year;
 
       final P = paschaDay(currentYear);
+      final greatLentStart = P - 48.days;
 
       feasts = {
+        greatLentStart + 6.days: [sunday1GreatLent],
+        greatLentStart + 13.days: [sunday2GreatLent],
+        greatLentStart + 20.days: [sunday3GreatLent],
+        greatLentStart + 27.days: [sunday4GreatLent],
+        greatLentStart + 34.days: [sunday5GreatLent],
         P - 7.days: [palmSunday],
         P: [pascha],
         P + 2.days: [theotokosIveron],
@@ -100,7 +112,9 @@ class ChurchCalendar {
         feasts[nearestSundayBefore(nativityNextYear)] = [sundayBeforeNativity];
       }
 
-      feasts[nearestSundayBefore(nativityNextYear) - 7.days] = [sundayOfForefathers];
+      feasts[nearestSundayBefore(nativityNextYear) - 7.days] = [
+        sundayOfForefathers
+      ];
     }
   }
 }
