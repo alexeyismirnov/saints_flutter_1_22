@@ -11,6 +11,8 @@ const pascha = const NameOfDay._internal(100000);
 const palmSunday = const NameOfDay._internal(100001);
 const ascension = const NameOfDay._internal(100002);
 const pentecost = const NameOfDay._internal(100003);
+const sundayOfForefathers = const NameOfDay._internal(100004);
+const sundayBeforeNativity = const NameOfDay._internal(100005);
 
 const theotokosIveron = const NameOfDay._internal(2250);
 const theotokosLiveGiving = const NameOfDay._internal(100100);
@@ -81,8 +83,24 @@ class ChurchCalendar {
         P + 63.days: [allRussianSaints],
         nearestSunday(DateTime(currentYear, 2, 7)): [newMartyrsOfRussia],
         nearestSunday(DateTime(currentYear, 7, 29)): [holyFathersSixCouncils],
-        nearestSunday(DateTime(currentYear, 10, 24)): [holyFathersSeventhCouncil]
+        nearestSunday(DateTime(currentYear, 10, 24)): [
+          holyFathersSeventhCouncil
+        ]
       };
+
+      final nativity = DateTime(currentYear, 1, 7);
+
+      if (nativity.weekday != DateTime.sunday) {
+        feasts[nearestSundayBefore(nativity)] = [sundayBeforeNativity];
+      }
+
+      final nativityNextYear = DateTime(currentYear + 1, 1, 7);
+
+      if (nativityNextYear.weekday == DateTime.sunday) {
+        feasts[nearestSundayBefore(nativityNextYear)] = [sundayBeforeNativity];
+      }
+
+      feasts[nearestSundayBefore(nativityNextYear) - 7.days] = [sundayOfForefathers];
     }
   }
 }
