@@ -18,6 +18,7 @@ const sunday1GreatLent = const NameOfDay._internal(100006);
 const sunday2GreatLent = const NameOfDay._internal(11274);
 const sunday3GreatLent = const NameOfDay._internal(100007);
 const sunday4GreatLent = const NameOfDay._internal(4121);
+const saturdayAkathist = const NameOfDay._internal(100008);
 const sunday5GreatLent = const NameOfDay._internal(4141);
 
 const theotokosIveron = const NameOfDay._internal(2250);
@@ -81,6 +82,7 @@ class ChurchCalendar {
         greatLentStart + 13.days: [sunday2GreatLent],
         greatLentStart + 20.days: [sunday3GreatLent],
         greatLentStart + 27.days: [sunday4GreatLent],
+        greatLentStart + 33.days: [saturdayAkathist],
         greatLentStart + 34.days: [sunday5GreatLent],
         P - 7.days: [palmSunday],
         P: [pascha],
