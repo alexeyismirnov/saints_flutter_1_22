@@ -14,6 +14,7 @@ const pentecost = const NameOfDay._internal(100003);
 const sundayOfForefathers = const NameOfDay._internal(100004);
 const sundayBeforeNativity = const NameOfDay._internal(100005);
 
+const saturdayOfFathers = const NameOfDay._internal(100009);
 const sunday1GreatLent = const NameOfDay._internal(100006);
 const sunday2GreatLent = const NameOfDay._internal(11274);
 const sunday3GreatLent = const NameOfDay._internal(100007);
@@ -33,6 +34,7 @@ const newMartyrsOfRussia = const NameOfDay._internal(100109);
 const holyFathersSixCouncils = const NameOfDay._internal(100110);
 const allRussianSaints = const NameOfDay._internal(100111);
 const holyFathersSeventhCouncil = const NameOfDay._internal(100112);
+const holyFathersKievCaves = const NameOfDay._internal(100113);
 
 class ChurchCalendar {
   static DateTime currentDate;
@@ -78,8 +80,9 @@ class ChurchCalendar {
       final greatLentStart = P - 48.days;
 
       feasts = {
+        greatLentStart - 2.days: [saturdayOfFathers],
         greatLentStart + 6.days: [sunday1GreatLent],
-        greatLentStart + 13.days: [sunday2GreatLent],
+        greatLentStart + 13.days: [sunday2GreatLent, holyFathersKievCaves],
         greatLentStart + 20.days: [sunday3GreatLent],
         greatLentStart + 27.days: [sunday4GreatLent],
         greatLentStart + 33.days: [saturdayAkathist],
