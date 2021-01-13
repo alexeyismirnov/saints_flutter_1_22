@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -8,7 +9,7 @@ import 'app_theme.dart';
 class RestartWidget extends StatefulWidget {
   static restartApp(BuildContext context) {
     final _RestartWidgetState state =
-    context.ancestorStateOfType(const TypeMatcher<_RestartWidgetState>());
+        context.findAncestorStateOfType<_RestartWidgetState>();
     state.restartApp();
   }
 
@@ -20,22 +21,23 @@ class _RestartWidgetState extends State<RestartWidget> {
   Key key = UniqueKey();
 
   Widget getApp() => TheViewModel(
-    theModel: SaintsModel(),
-    child: MaterialApp(
-      title: 'Жития святых',
-      home: ContainerPage(),
-      theme: AppTheme.getThemeData(),
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('ru', 'RU'),
-      ],
-      debugShowCheckedModeBanner: false,
-    ),
-  );
-
+        theModel: SaintsModel(),
+        child: MaterialApp(
+          title: 'Жития святых',
+          home: ContainerPage(),
+          theme: AppTheme.getThemeData(),
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            DefaultCupertinoLocalizations.delegate
+          ],
+          supportedLocales: [
+            const Locale('ru', 'RU'),
+          ],
+          debugShowCheckedModeBanner: false,
+        ),
+      );
 
   void restartApp() {
     this.setState(() {
@@ -51,4 +53,3 @@ class _RestartWidgetState extends State<RestartWidget> {
     );
   }
 }
-

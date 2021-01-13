@@ -117,15 +117,19 @@ class _SaintDetailPageState extends State<SaintDetailPage> {
 
     final _textMinHeight = MediaQuery.of(context).size.height - _appBarHeight;
 
-    final body1 =
-        Theme.of(context).textTheme.bodyText2.copyWith(fontSize: G.fontSize.val());
+    final body1 = Theme.of(context)
+        .textTheme
+        .bodyText2
+        .copyWith(fontSize: G.fontSize.val());
     // final String
-    final mkText = Text(markdown, style: body1);
 
-    return CustomScrollView(
-        controller: _scrollController,
-        physics: ClampingScrollPhysics(),
-        slivers: <Widget>[
+    final mkText = SelectableText(markdown, style: body1);
+
+    return Scrollbar(
+        child: CustomScrollView(
+            controller: _scrollController,
+            physics: ClampingScrollPhysics(),
+            slivers: <Widget>[
           SliverAppBar(
               elevation: 0.0,
               expandedHeight: _appBarHeight,
@@ -186,6 +190,6 @@ class _SaintDetailPageState extends State<SaintDetailPage> {
                           BoxDecoration(color: Theme.of(context).canvasColor),
                       child: SafeArea(top: false, child: mkText)),
                   childCount: 1))
-        ]);
+        ]));
   }
 }
