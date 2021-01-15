@@ -14,7 +14,7 @@ void main(List<String> args) async {
   Image image = decodeImage(bytes);
   Image thumbnail = copyResize(image, width: -1, height: 300);
 
-  final icon = File('icons/$id.jpg')..writeAsBytesSync(encodeJpg(thumbnail, quality:85));
+  final icon = File('icons/$id.jpg')..writeAsBytesSync(encodeJpg(thumbnail, quality:95));
   await icon.copy("/Users/alexey/pCloud Drive/Public Folder/icons/$id.jpg");
 
 }

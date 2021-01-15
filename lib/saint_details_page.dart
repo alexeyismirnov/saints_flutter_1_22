@@ -271,9 +271,14 @@ class _SaintDetailPageState extends State<SaintDetailPage> {
                                     },
                                     child: Material(
                                         elevation: 10.0,
-                                        child: Image.asset(
-                                            "icons/${widget.saint.id}.jpg",
-                                            height: 280.0))),
+                                        child: Container(
+                                            height: 280.0,
+                                            child: FittedBox(
+                                              child: Image.asset(
+                                                "icons/${widget.saint.id}.jpg",
+                                              ),
+                                              fit: BoxFit.contain,
+                                            )))),
                               Container(
                                   padding: EdgeInsets.only(top: 10.0),
                                   constraints: BoxConstraints(
