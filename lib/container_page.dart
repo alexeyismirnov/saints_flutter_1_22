@@ -67,6 +67,8 @@ class _ContainerPageState extends State<ContainerPage>
   void initState() {
     super.initState();
 
+    Future.delayed(Duration.zero, () => showAlert());
+
     _navigationViews = <_AnimatedContent>[
       _AnimatedContent(
         icon: const Icon(Icons.wb_sunny),
@@ -92,6 +94,31 @@ class _ContainerPageState extends State<ContainerPage>
       view.controller.addListener(_rebuild);
 
     _navigationViews[_currentIndex].controller.value = 1.0;
+  }
+
+  void showAlert() {
+    if (!G.prefs.getKeys().contains('version_4_8')) {
+      G.prefs.setBool('version_4_8', true);
+
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            // return object of type Dialog
+            return AlertDialog(
+              title: Text('Жития святых v4.8'),
+              content: Text(
+                  'В новой версии приложения можно сохранять иконы и копировать текст.'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          });
+    }
   }
 
   @override
