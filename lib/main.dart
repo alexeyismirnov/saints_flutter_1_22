@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 
 import 'dart:core';
 import 'dart:async';
@@ -13,6 +14,7 @@ import 'restart_widget.dart';
 
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  InAppPurchaseConnection.enablePendingPurchases();
 
   G.prefs = await SharedPreferences.getInstance();
 
