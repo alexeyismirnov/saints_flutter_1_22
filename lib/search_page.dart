@@ -32,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                       style: Theme.of(context)
                           .textTheme
-                          .subhead
+                          .subtitle1
                           .copyWith(fontSize: G.fontSize.val()),
                       onChanged: (String name) => G.search.set(name)))
             ],

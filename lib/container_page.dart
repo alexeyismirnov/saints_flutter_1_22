@@ -4,6 +4,7 @@ import 'package:launch_review/launch_review.dart';
 import 'homepage.dart';
 import 'favs_page.dart';
 import 'search_page.dart';
+import 'donation_page.dart';
 import 'custom_bottom_bar.dart';
 import 'font_size_dialog.dart';
 import 'app_theme.dart';
@@ -86,6 +87,12 @@ class _ContainerPageState extends State<ContainerPage>
         icon: const Icon(Icons.search),
         title: 'Поиск',
         content: SearchPage(),
+        vsync: this,
+      ),
+      _AnimatedContent(
+        icon: const Icon(Icons.accessibility_new),
+        title: 'Помочь',
+        content: DonationPage(),
         vsync: this,
       ),
     ];

@@ -69,7 +69,8 @@ class SaintListState extends State<SaintList> {
     saintData = List<Saint>();
 
     streamController = StreamController.broadcast();
-    dataStream = streamController.stream.listen((s) => setState(() => saintData.add(s)));
+    dataStream =
+        streamController.stream.listen((s) => setState(() => saintData.add(s)));
   }
 
   Widget buildRow(BuildContext context, int index) {
@@ -78,8 +79,10 @@ class SaintListState extends State<SaintList> {
     var month = s.month;
     Widget name;
 
-    var style =
-        Theme.of(context).textTheme.body1.copyWith(fontSize: G.fontSize.val());
+    var style = Theme.of(context)
+        .textTheme
+        .bodyText2
+        .copyWith(fontSize: G.fontSize.val());
 
     if (day != null && day != 0) {
       if (day == 29 && month == 2) {
@@ -92,20 +95,20 @@ class SaintListState extends State<SaintList> {
 
       name = RichText(
           text: TextSpan(text: '', style: style, children: [
-        TextSpan(text: format.format(dt), style: style.copyWith(color: Colors.red)),
+        TextSpan(
+            text: format.format(dt), style: style.copyWith(color: Colors.red)),
         TextSpan(text: '   '),
         TextSpan(text: s.name)
       ]));
-
     } else {
       name = Text(s.name, style: style);
     }
 
-    return new GestureDetector(
-      child: new Container(
+    return GestureDetector(
+      child: Container(
           decoration: BoxDecoration(color: Colors.transparent),
-          padding: new EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          child: new Row(
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
@@ -116,8 +119,8 @@ class SaintListState extends State<SaintList> {
                       height: 100.0,
                     )
                   : Container(),
-              new Expanded(
-                  child: new Container(
+              Expanded(
+                  child: Container(
                       padding: EdgeInsets.only(left: 10.0), child: name))
             ],
           )),
@@ -141,16 +144,13 @@ class SaintListState extends State<SaintList> {
   Widget build(BuildContext context) {
     if (saintData.length == 0 && !streamController.isClosed) {
       if (widget.date != null)
-        TheViewModel
-            .of(context)
+        TheViewModel.of(context)
             .getSaints(date: widget.date, into: streamController);
       else if (widget.ids != null)
-        TheViewModel
-            .of(context)
+        TheViewModel.of(context)
             .getFavedSaints(ids: widget.ids, into: streamController);
       else if (widget.search != null && widget.search.length > 2)
-        TheViewModel
-            .of(context)
+        TheViewModel.of(context)
             .getSaintsByName(name: widget.search, into: streamController);
     }
 
