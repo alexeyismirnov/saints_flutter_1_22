@@ -81,14 +81,20 @@ class _DonationPageState extends State<DonationPage> {
   }
 
   Widget donationButton(ProductDetails product) => Center(
-      child: SizedBox(
+      child: Container(
           width: 300.0,
+          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
           child: Card(
               elevation: 5.0,
               child: Container(
                   padding: EdgeInsets.all(5.0),
                   child: GestureDetector(
-                      onTap: () {},
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        InAppPurchaseConnection.instance.buyConsumable(
+                            purchaseParam:
+                                PurchaseParam(productDetails: product));
+                      },
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -118,48 +124,44 @@ class _DonationPageState extends State<DonationPage> {
     Widget busyIndicator = Container();
 
     if (isLoading)
-      busyIndicator = Center(child: CircularProgressIndicator());
+      busyIndicator = Container(
+          padding: EdgeInsets.symmetric(vertical: 10.0),
+          child: Center(child: CircularProgressIndicator()));
     else if (!isAvailable)
-      busyIndicator =
-          Center(child: Text("Невозможно подключиться к ${storeName}"));
+      busyIndicator = Container(
+          padding: EdgeInsets.symmetric(vertical: 10.0),
+          child: Center(child: Text("Невозможно подключиться к ${storeName}")));
 
-    return NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
-            [
-              SliverAppBar(
-                  backgroundColor: Colors.transparent,
-                  pinned: false,
-                  title: Text(
-                    "Приход свв. апп. Петра и Павла в Гонконге",
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                  ))
-            ],
-        body: CustomScrollView(slivers: <Widget>[
-          SliverPadding(
-              padding: EdgeInsets.all(15),
-              sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                Container(
-                    height: 300.0,
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: FittedBox(
-                      child: Image.asset(
-                        "images/church.jpg",
-                      ),
-                      fit: BoxFit.contain,
-                    )),
-                Text(message, style: style),
-                Container(
-                    padding: EdgeInsets.symmetric(vertical: 10.0),
-                    child: busyIndicator),
-                if (products.length > 0) ...[
-                  donationButton(products[0]),
-                  donationButton(products[1]),
-                  donationButton(products[2]),
-                  donationButton(products[3]),
-                ]
-              ])))
-        ]));
+    return CustomScrollView(slivers: <Widget>[
+      SliverPadding(
+          padding: EdgeInsets.all(15),
+          sliver: SliverList(
+              delegate: SliverChildListDelegate([
+            Text(
+              "Приход свв. апп. Петра и Павла в Гонконге",
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            SizedBox(height: 10),
+            Container(
+                height: 300.0,
+                padding: EdgeInsets.only(bottom: 10),
+                child: FittedBox(
+                  child: Image.asset(
+                    "images/church.jpg",
+                  ),
+                  fit: BoxFit.contain,
+                )),
+            Text(message, style: style),
+            busyIndicator,
+            if (products.length > 0) ...[
+              donationButton(products[0]),
+              donationButton(products[1]),
+              donationButton(products[2]),
+              donationButton(products[3]),
+            ]
+          ])))
+    ]);
   }
 }
