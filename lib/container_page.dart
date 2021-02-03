@@ -19,7 +19,9 @@ class _AnimatedContent {
     TickerProvider vsync,
   })  : item = BottomNavigationBarItem(
           icon: icon,
-          title: Text(title),
+          title: title == "Помочь"
+              ? Text(title, style: TextStyle(color: Colors.red))
+              : Text(title),
         ),
         controller = AnimationController(
           duration: kThemeAnimationDuration,
@@ -90,7 +92,7 @@ class _ContainerPageState extends State<ContainerPage>
         vsync: this,
       ),
       _AnimatedContent(
-        icon: const Icon(Icons.accessibility_new),
+        icon: const Icon(Icons.accessibility_new, color: Colors.red),
         title: 'Помочь',
         content: DonationPage(),
         vsync: this,
