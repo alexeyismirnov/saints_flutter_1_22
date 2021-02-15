@@ -16,7 +16,7 @@ typedef void SubscriptionHandler<T>(T val);
 
 class ConfigParam<T> {
   String prefKey;
-  final subject = new PublishSubject<T>();
+  final subject = PublishSubject<T>();
 
   ConfigParam(this.prefKey);
 

@@ -106,6 +106,7 @@ class _ContainerPageState extends State<ContainerPage>
   }
 
   void showAlert() {
+    /*
     if (!G.prefs.getKeys().contains('version_4_8')) {
       G.prefs.setBool('version_4_8', true);
 
@@ -128,6 +129,8 @@ class _ContainerPageState extends State<ContainerPage>
             );
           });
     }
+
+     */
   }
 
   @override
